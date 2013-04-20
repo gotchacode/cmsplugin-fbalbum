@@ -1,0 +1,52 @@
+{% load i18n sekizai_tags %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.colorbox-min.js"></script>{% endaddtoblock %}
+{% addtoblock "css" %}<link rel="stylesheet" href="{{STATIC_URL}}cms_plugins/css/colorbox.css">{% endaddtoblock %}
+{% addtoblock "css" %}
+<style>
+.small {
+    padding: 10px 5px 10px 5px;
+}
+</style>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript">
+//Get the album url here, parse and get the unique-id of Facebook Album
+var album_url = '{{ object.album_url }}', uid = album_url.split('?')[1].split('.')[1];
+$(document).ready(function () {
+// Ajax Request to Facebook Graph API
+var req_url = 'http://graph.facebook.com/'+uid+'/photos';
+
+$.ajax({
+    type: "GET",
+    url: req_url,
+    success: function(res) {
+        data = res
+        generateImg(data);
+    },
+    error: function() {
+      $('.plugin_fbalbum').append('<h2> No valid image response.</h2>')
+    }
+});
+
+//Add image in the placeholder
+var generateImg = function (data) {
+    var len = data.data.length, image_stack = '', small_image_url, big_image_url,img;
+    for(i = 0 ; i < len; i++) {
+        small_image_url = data.data[i].images[8].source;
+        big_image_url = data.data[i].images[1].source;
+        img = '<a href="'+big_image_url+'" class="group1" > '+'<img src="'+small_image_url+'" class="small" ' +' /></a>';
+        image_stack += img;
+    }
+    $(".plugin_fbalbum").append(image_stack);
+    //Add Colorbox affect.
+    $(document).ready(function () {
+       $(".group1").colorbox({rel:'group3', transition:"fade", width:"75%", height:"75%"});
+    });
+}
+});
+</script>
+{% endaddtoblock %}
+
+<div class="plugin_fbalbum">
+</div>
