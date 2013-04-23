@@ -34,8 +34,12 @@ $.ajax({
 var generateImg = function (data) {
     var len = data.data.length, image_stack = '', small_image_url, big_image_url,img;
     for(i = 0 ; i < len; i++) {
+        if (data.data[i].images[8]) {
         small_image_url = data.data[i].images[8].source;
-        big_image_url = data.data[i].images[1].source;
+        }
+        if (data.data[i].images[1]) {
+            big_image_url = data.data[i].images[1].source;
+        }
         img = '<a href="'+big_image_url+'" class="group1" > '+'<img src="'+small_image_url+'" class="small" ' +' /></a>';
         image_stack += img;
     }
