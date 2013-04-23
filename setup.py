@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.0.2'
+version = '0.0.3'
 
 setup(
     name = 'cmsplugin-fbalbum',
@@ -8,6 +8,7 @@ setup(
     description = 'facebook album plugin for django-cms',
     author = 'Vinit Kumar',
     author_email = 'vinit.kumar@changer.nl',
+    url='http://github.com/vinitcool76/cmsplugin-fbalbum.git',
     packages = find_packages(),
     zip_safe=False,
     include_package_data = True,
