@@ -41,7 +41,7 @@ var generateImg = function (data) {
             big_image_url = data.data[i].images[1].source;
         }
         img = '<a href="'+big_image_url+'" class="group1" > '+'<img src="'+small_image_url+'" class="small" ' +' /></a>';
-        image_stack += img;
+        image_stack = img;
     }
     $(".plugin_fbalbum").append(image_stack);
     //Add Colorbox affect.
