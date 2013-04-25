@@ -1,6 +1,8 @@
 //Get the album url here, parse and get the unique-id of Facebook Album
-var album_url = '{{ object.album_url }}', uid = album_url.split('?')[1].split('.')[1];
-var access_token = '{{ object.access_token }}';
+var album_url = '{{ object.album_url }}',
+    uid = album_url.split('?')[1].split('.')[1],
+    access_token = '{{ object.access_token }}';
+
 $(document).ready(function () {
 // Ajax Request to Facebook Graph API
 var req_url = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
