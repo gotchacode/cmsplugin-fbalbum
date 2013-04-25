@@ -13,8 +13,9 @@
 <script type="text/javascript">
 //Get the album url here, parse and get the unique-id of Facebook Album
 var album_url = '{{ object.album_url }}',
-    uid = album_url.split('?')[1].split('.')[1],
-    access_token = '{{ object.access_token }}';
+    uid = album_url.('?')[1].split('.')[1],
+    access_token = '{{ object.access_token }}',
+    img_stack;
 
 $(document).ready(function () {
 // Ajax Request to Facebook Graph API
@@ -45,7 +46,7 @@ var generateImg = function (data) {
         if (data.data[i].images[1]) {
             big_image_url = data.data[i].images[1].source;
         }
-        img_stack += '<a href="' + big_image_url + '" class="group1">' +
+        image_stack += '<a href="' + big_image_url + '" class="group1">' +
                     '<img src="' + small_image_url + '" class="small" /></a>';
     }
     $('.plugin_fbalbum').append(image_stack);
