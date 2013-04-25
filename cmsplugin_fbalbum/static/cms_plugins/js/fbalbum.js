@@ -1,21 +1,7 @@
-{% load i18n sekizai_tags %}
-{% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.min.js"></script>{% endaddtoblock %}
-{% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.colorbox-min.js"></script>{% endaddtoblock %}
-{% addtoblock "css" %}<link rel="stylesheet" href="{{STATIC_URL}}cms_plugins/css/colorbox.css">{% endaddtoblock %}
-{% addtoblock "css" %}
-<style>
-.small {
-    padding: 10px 5px 10px 5px;
-}
-</style>
-{% endaddtoblock %}
-{% addtoblock "js" %}
-<script type="text/javascript">
 //Get the album url here, parse and get the unique-id of Facebook Album
 var album_url = '{{ object.album_url }}',
-    uid = album_url.('?')[1].split('.')[1],
-    access_token = '{{ object.access_token }}',
-    img_stack;
+    uid = album_url.split('?')[1].split('.')[1],
+    access_token = '{{ object.access_token }}';
 
 $(document).ready(function () {
 // Ajax Request to Facebook Graph API
@@ -46,7 +32,7 @@ var generateImg = function (data) {
         if (data.data[i].images[1]) {
             big_image_url = data.data[i].images[1].source;
         }
-        image_stack += '<a href="' + big_image_url + '" class="group1">' +
+        img_stack += '<a href="' + big_image_url + '" class="group1">' +
                     '<img src="' + small_image_url + '" class="small" /></a>';
     }
     $('.plugin_fbalbum').append(image_stack);
@@ -56,7 +42,3 @@ var generateImg = function (data) {
     });
 };
 });
-</script>
-{% endaddtoblock %}
-<div class="plugin_fbalbum">
-</div>
