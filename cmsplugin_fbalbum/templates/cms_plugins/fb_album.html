@@ -1,6 +1,7 @@
 {% load i18n sekizai_tags %}
 {% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.min.js"></script>{% endaddtoblock %}
 {% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.colorbox-min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/bootstrap-carousel.js"></script>{% endaddtoblock %}
 {% addtoblock "css" %}<link rel="stylesheet" href="{{STATIC_URL}}cms_plugins/css/colorbox.css">{% endaddtoblock %}
 {% addtoblock "css" %}
 <style>
@@ -13,7 +14,7 @@
 <script type="text/javascript">
 //Get the album url here, parse and get the unique-id of Facebook Album
 var album_url = '{{ object.album_url }}',
-    uid = album_url.('?')[1].split('.')[1],
+    uid = album_url.split('?')[1].split('.')[1],
     access_token = '{{ object.access_token }}',
     img_stack;
 
@@ -40,23 +41,42 @@ var generateImg = function (data) {
 	big_image_url;
     a = 4;
     for(i = 0 ; i < len; i++) {
-	if (data.data[i].images[8]) {
+	   if (data.data[i].images[8]) {
 	    small_image_url = data.data[i].images[8].source;
-	}
-	if (data.data[i].images[1]) {
-	    big_image_url = data.data[i].images[1].source;
-	}
-	image_stack += '<a href="' + big_image_url + '" class="group1">' +
-		    '<img src="' + small_image_url + '" class="small" /></a>';
+	   }
+	   if (data.data[i].images[1]) {
+	        big_image_url = data.data[i].images[1].source;
+	   }
+	   image_stack += '<img class="album-picture item" src="'+big_image_url+'">';
+       $('.small').attr('src', small_image_url);
     }
-    $('.plugin_fbalbum').append(image_stack);
-    //Add Colorbox affect.
-    $(document).ready(function () {
-       $('.group1').colorbox({ rel: 'group3', transition: 'fade', width: '75%', height: '75%' });
-    });
+    $('.carousel-inner').append(image_stack);
+    $('.carousel').carousel();
+
 };
 });
 </script>
 {% endaddtoblock %}
-<div class="plugin_fbalbum">
+<ul class="albums">
+<li class="album-toggle" data-toggle="modal" data-target="#model-album-{album-name}"
+<div>{{ object.album_name }}</div>
+<img class="small">
+</li>
+</ul>
+
+<div class="modal in" id="modal-album-{{ object.album_name }}">
+<div class="modal-header"></div>
+<div id="modal-body">
+<div id="carousel-album-{{ object.album_name }}" class="carousel">
+<ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+</ol>
+<div class="carousel-inner">
+</div>
+<a class="carousel-control left" href="#carousel-album-beslag" data-slide="prev"></a>
+<a class="carousel-control right" href="#carousel-album-beslag" data-slide="next"></a>
+</div>
+</div>
 </div>
