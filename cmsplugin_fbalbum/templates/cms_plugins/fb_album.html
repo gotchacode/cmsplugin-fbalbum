@@ -1,7 +1,7 @@
 {% load i18n sekizai_tags %}
 {% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.min.js"></script>{% endaddtoblock %}
 {% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/jquery.colorbox-min.js"></script>{% endaddtoblock %}
-{{STATIC_URL}}cms_plugins/js/bootstrap-carousel.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script type="text/javascript" src="{{STATIC_URL}}cms_plugins/js/bootstrap-carousel.js"></script>{% endaddtoblock %}
 {% addtoblock "css" %}<link rel="stylesheet" href="{{STATIC_URL}}cms_plugins/css/colorbox.css">{% endaddtoblock %}
 {% addtoblock "css" %}
 <style>
