@@ -38,8 +38,8 @@ var generateImg = function (data) {
     var len = data.data.length,
 	image_stack = '',
 	small_image_url,
-	big_image_url;
-    a = 4;
+	big_image_url,
+    state = 'active';
     for(i = 0 ; i < len; i++) {
 	   if (data.data[i].images[8]) {
 	    small_image_url = data.data[i].images[8].source;
@@ -47,7 +47,9 @@ var generateImg = function (data) {
 	   if (data.data[i].images[1]) {
 	        big_image_url = data.data[i].images[1].source;
 	   }
-	   image_stack += '<img class="album-picture item" src="'+big_image_url+'">';
+       console.log(image_stack);
+	   image_stack += '<img class="album-picture ' + state + ' item" src="'+big_image_url+'">';
+       state = '';
        $('.small').attr('src', small_image_url);
     }
     $('.carousel-inner').append(image_stack);
@@ -58,27 +60,25 @@ var generateImg = function (data) {
 </script>
 {% endaddtoblock %}
 <ul class="albums">
-<li class="album-toggle" data-toggle="modal" data-target="#model-{album-name}"
-<div>{{ object.album_name }}</div>
-<img class="small">
-</li>
+  <li class="album-toggle" data-toggle="modal" data-target="#modal-{{object.album_name}}">
+    <div>{{ object.album_name }}</div>
+    <img class='small' >
+  </li>
 </ul>
 
-<div class="modal in" id="modal-{{ object.album_name }}">
-<div class="modal-header">
-<button class="close" data-dismiss="modal">X</button>
-</div>
-<div id="modal-body">
-<div id="carousel-{{ object.album_name }}" class="carousel">
-<ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-</ol>
-<div class="carousel-inner">
-</div>
-<a class="carousel-control left" href="#carousel-album-{{ object.album_name }}" data-slide="prev">&lsaquo;</a>
-<a class="carousel-control right" href="#carousel-album-{{ object.album_name }}" data-slide="next">&rsaquo;</a>
-</div>
-</div>
+
+<div class="modal" id="modal-{{object.album_name}}" style="display: none;">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">X</button>
+      thumbnail description
+  </div>
+
+<div class="modal-body">
+  <div id="carousel-{{object.album_name}}" class="carousel">
+  <div class="carousel-inner">
+  </div>
+  <a class="carousel-control left" href="#carousel-{{object.album_name}}" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#carousel-{{object.album_name}}" data-slide="next">&rsaquo;</a>
+  </div>
+  </div>
 </div>
