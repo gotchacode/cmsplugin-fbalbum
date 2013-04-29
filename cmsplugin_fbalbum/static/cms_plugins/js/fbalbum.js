@@ -11,7 +11,11 @@ $.ajax({
     type: "GET",
     url: req_url,
     success: function(res) {
+<<<<<<< HEAD
 	generateImg(res);
+=======
+        generateImg(res);
+>>>>>>> 5ba8d7ebe45fccd9c17e8bce53390c3a983bf443
     },
     error: function() {
       $('.plugin_fbalbum').append('<h2> No valid image response.</h2>');
@@ -21,6 +25,7 @@ $.ajax({
 //Add image in the placeholder
 var generateImg = function (data) {
     var len = data.data.length,
+<<<<<<< HEAD
 	image_stack = '',
 	small_image_url,
 	big_image_url;
@@ -34,6 +39,21 @@ var generateImg = function (data) {
 	}
 	img_stack += '<a href="' + big_image_url + '" class="group1">' +
 		    '<img src="' + small_image_url + '" class="small" /></a>';
+=======
+        image_stack = '',
+        small_image_url,
+        big_image_url;
+    a = 4;
+    for(i = 0 ; i < len; i++) {
+        if (data.data[i].images[8]) {
+            small_image_url = data.data[i].images[8].source;
+        }
+        if (data.data[i].images[1]) {
+            big_image_url = data.data[i].images[1].source;
+        }
+        img_stack += '<a href="' + big_image_url + '" class="group1">' +
+                    '<img src="' + small_image_url + '" class="small" /></a>';
+>>>>>>> 5ba8d7ebe45fccd9c17e8bce53390c3a983bf443
     }
     $('.plugin_fbalbum').append(image_stack);
     //Add Colorbox affect.
