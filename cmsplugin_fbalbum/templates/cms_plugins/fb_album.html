@@ -58,16 +58,18 @@ var generateImg = function (data) {
 </script>
 {% endaddtoblock %}
 <ul class="albums">
-<li class="album-toggle" data-toggle="modal" data-target="#model-album-{album-name}"
+<li class="album-toggle" data-toggle="modal" data-target="#model-{album-name}"
 <div>{{ object.album_name }}</div>
 <img class="small">
 </li>
 </ul>
 
-<div class="modal in" id="modal-album-{{ object.album_name }}">
-<div class="modal-header"></div>
+<div class="modal in" id="modal-{{ object.album_name }}">
+<div class="modal-header">
+<button class="close" data-dismiss="modal">X</button>
+</div>
 <div id="modal-body">
-<div id="carousel-album-{{ object.album_name }}" class="carousel">
+<div id="carousel-{{ object.album_name }}" class="carousel">
 <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
