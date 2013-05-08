@@ -14,48 +14,49 @@
 <script type="text/javascript">
 //Get the album url here, parse and get the unique-id of Facebook Album
 var album_url = '{{ object.album_url }}',
-    uid = album_url.split('?')[1].split('.')[1],
-    access_token = '{{ object.access_token }}',
-    img_stack;
+  uid = album_url.split('?')[1].split('.')[1],
+  access_token = '{{ object.access_token }}';
 
-$(document).ready(function () {
-// Ajax Request to Facebook Graph API
-var req_url = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
+  $(document).ready(function () {
+    // Ajax Request to Facebook Graph API
+    var req_url = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
 
-$.ajax({
-    type: "GET",
-    url: req_url,
-    success: function(res) {
-	generateImg(res);
-    },
-    error: function() {
-      $('.plugin_fbalbum').append('<h2> No valid image response.</h2>');
-    }
-});
+    $.ajax({
+      type: "GET",
+      url: req_url,
+      dataType:'json',
+      success: function(res) {
+        generateImg(res);
+      },
+      error: function() {
+        $('.plugin_fbalbum').append('<h2> No valid image response.</h2>');
+      }
+    });
 
-//Add image in the placeholder
-var generateImg = function (data) {
-    var len = data.data.length,
-	image_stack = '',
-	small_image_url,
-	big_image_url,
-    state = 'active';
-    for(i = 0 ; i < len; i++) {
-	   if (data.data[i].images[8]) {
-	    small_image_url = data.data[i].images[8].source;
-	   }
-	   if (data.data[i].images[1]) {
-	        big_image_url = data.data[i].images[1].source;
-	   }
-       console.log(image_stack);
-	   image_stack += '<img class="album-picture ' + state + ' item" src="'+big_image_url+'">';
-       state = '';
-       $('.small').attr('src', small_image_url);
-    }
-    $('.carousel-inner').append(image_stack);
-    $('.carousel').carousel();
+    //Add image in the placeholder
+    var generateImg = function (data) {
+      var len = data.data.length,
+      image_stack = '',
+      small_image_url,
+      big_image_url,
+      min = data.data[0].images.length - 1,
+      state = 'active';
+      for(i = 0 ; i < len; i++) {
+        if (data.data[i].images[min]) {
+          small_image_url = data.data[i].images[min].source;
+        }
+        if (data.data[i].images[1]) {
+          big_image_url = data.data[i].images[1].source;
+        }
+        image_stack += '<img class="album-picture ' + state + ' item" src="'+big_image_url+'">';
+        state = '';
+        $('.small').attr('src', small_image_url);
+      }
 
-};
+      $('.carousel-inner').append(image_stack);
+      $('.carousel').carousel();
+
+    };
 });
 </script>
 {% endaddtoblock %}
