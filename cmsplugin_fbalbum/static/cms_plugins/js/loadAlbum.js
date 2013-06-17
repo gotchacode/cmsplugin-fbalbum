@@ -1,4 +1,4 @@
-function loadAlbum(req_url, id)  {
+function loadAlbum(req_url, id, small)  {
   $.ajax({
     type: "GET",
     url: req_url,
@@ -19,7 +19,7 @@ function loadAlbum(req_url, id)  {
           }
           image_stack += '<img class="album-picture ' + state + ' item" src="'+big_image_url+'">';
           state = '';
-          $('.small').attr('src', small_image_url);
+          $('.'+small).attr('src', small_image_url);
         }
 
         $('.'+id).append(image_stack);
