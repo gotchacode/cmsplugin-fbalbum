@@ -37,11 +37,11 @@
 {% addtoblock "js" %}
 <script type="text/javascript">
 //Get the album url here, parse and get the unique-id of Facebook Album
-var album_url-{{object.album_name}} = '{{ object.album_url }}',
-uid-{{object.album_name}} = album_url.split('?')[1].split('.')[1],
+var album_url_{{object.album_name}} = '{{ object.album_url }}',
+uid_{{object.album_name}} = album_url.split('?')[1].split('.')[1],
 access_token = '{{ object.access_token }}';
 // Ajax Request to Facebook Graph API
-var req_url-{{object.album_name}} = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
+var req_url_{{object.album_name}} = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
 loadAlbum(req_url,'carousel-inner-{{object.album_name}}')
 </script>
 {% endaddtoblock %}
