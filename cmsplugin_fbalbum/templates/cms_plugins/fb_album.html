@@ -41,7 +41,7 @@ var album_url_{{object.album_name}} = '{{ object.album_url }}',
 uid_{{object.album_name}} = album_url_{{object.album_name}}.split('?')[1].split('.')[1],
 access_token = '{{ object.access_token }}';
 // Ajax Request to Facebook Graph API
-var req_url_{{object.album_name}} = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
+var req_url_{{object.album_name}} = 'https://graph.facebook.com/'+uid_{{object.album_name}}+'/photos'+'?access_token='+access_token;
 loadAlbum(req_url,'carousel-inner-{{object.album_name}}')
 </script>
 {% endaddtoblock %}
