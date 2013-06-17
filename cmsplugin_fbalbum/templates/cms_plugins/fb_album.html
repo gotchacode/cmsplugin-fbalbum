@@ -42,6 +42,6 @@ uid = album_url.split('?')[1].split('.')[1],
 access_token = '{{ object.access_token }}';
 // Ajax Request to Facebook Graph API
 var req_url = 'https://graph.facebook.com/'+uid+'/photos'+'?access_token='+access_token;
-loadAlbum(req_url,carousel-inner-{{object.album_name}})
+loadAlbum(req_url,'carousel-inner-{{object.album_name}}')
 </script>
 {% endaddtoblock %}
