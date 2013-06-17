@@ -1,4 +1,4 @@
-function loadAlbum(req_url, id) = {
+function loadAlbum(req_url, id)  {
   $.ajax({
     type: "GET",
     url: req_url,
