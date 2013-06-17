@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.3.8'
+version = '0.4.0'
 
 setup(
     name='cmsplugin-fbalbum',
@@ -13,7 +13,5 @@ setup(
     zip_safe=False,
     include_package_data=True,
     install_requires=[
-        'Django>=1.2',
-        'django-cms',
     ],
 )
