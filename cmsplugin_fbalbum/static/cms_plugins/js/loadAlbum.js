@@ -1,4 +1,4 @@
-function loadAlbum(req_url, class) {
+function loadAlbum(req_url, id) = {
   $.ajax({
     type: "GET",
     url: req_url,
@@ -22,7 +22,7 @@ function loadAlbum(req_url, class) {
           $('.small').attr('src', small_image_url);
         }
 
-        $('.'+class).append(image_stack);
+        $('.'+id).append(image_stack);
         $('.carousel').carousel();
     },
     error: function() {
