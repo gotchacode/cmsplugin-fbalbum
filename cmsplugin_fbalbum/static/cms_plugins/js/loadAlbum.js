@@ -8,7 +8,7 @@ function loadAlbum(req_url, id, small)  {
         image_stack = '',
         small_image_url,
         big_image_url,
-        min = res.data[0].images.length - 1,
+        min = res.data[0].images.length - 2,
         state = 'active';
         for(i = 0 ; i < len; i++) {
           if (res.data[i].images[min]) {
