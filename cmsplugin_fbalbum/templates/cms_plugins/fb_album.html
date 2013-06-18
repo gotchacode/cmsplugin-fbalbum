@@ -10,12 +10,16 @@
 }
 </style>
 {% endaddtoblock %}
+<div class="row">
+  <div class="span3">
 <ul class="albums">
   <li class="album-toggle" data-toggle="modal" data-target="#modal-{{object.album_name}}">
     <div>{{ object.album_name }}</div>
     <img class='small-{{object.album_name}}' >
   </li>
 </ul>
+</div>
+</div>
 
 
 <div class="modal" id="modal-{{object.album_name}}" style="display: none;">
