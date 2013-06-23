@@ -1,4 +1,4 @@
 *.pyc
-build/
-dist/
-cmsplugin_fbalbum.egg-info/
+/build/*
+/dist/*
+/cmsplugin_fbalbum.egg-info/*
