@@ -1,0 +1,4 @@
+*.pyc
+/build/*
+/dist/*
+/cmsplugin_fbalbum.egg-info/*
