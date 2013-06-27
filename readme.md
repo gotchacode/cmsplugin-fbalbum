@@ -1,17 +1,17 @@
-##Facebook Album Plugin for django CMS
+##Django CMS plugin for facebook albums
 
 
-This is a Facebook Album plugin to show images from a facebook page
-album in `Django CMS`. It enables all images to be presented in
-a attractive way so that it could be used in thumbnails and
-presented in a lightbox.
+This is gallery plugin with support for Facebook Albums. It is great to use facebook for storing images and you save in terms of your server storage and ther user has a liberty to add or remove images without even dealing with anything else.
 
-### How to get the access token required ?
+Image are presented in thumbnails, which on clicking would open up in carousel or lightbox.
 
-First you have create an APP on facebook.then,
-go get your temporary/short-lived **access_token** [temporary access_token](https://developers.facebook.com/tools/access_token/) 
-Save that **access_token** and now
-and then now you need to go to this URL to get the permanent access_token:
+
+### Setting up
+
+####How to get the access token required ?
+
+First you have to  create an APP on facebook.Then,go get your temporary/short-lived **access_token** [temporary access_token](https://developers.facebook.com/tools/access_token/) 
+Save that **access_token** and now and then you need to go to this URL to get the permanent access_token:
 
 First make sure you have:
 
