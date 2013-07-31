@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.5.4'
+version = '0.5.7'
 
 setup(
     name='cmsplugin-fbalbum',
